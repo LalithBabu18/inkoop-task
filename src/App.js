@@ -12,22 +12,17 @@ export default class App extends Component {
     match: 0
   }
 
-  strCompare = (str1, str2) => {
-    let score = 0
-    let start = false
+ strCompare = (str1, str2) => {
+    var dict = new Object();
     for (let index = 0; index < str1.length; index++) {
-        for (let jndex = 0; jndex < str2.length; jndex++) {
-            if (str1[index] === str2[jndex]) {
-                start = true;
-            }
+      for (let jndex = 0; jndex < str2.length; jndex++) {
+        if (str1[index] === str2[jndex]) {
+          dict[str1[index]] = 1
         }
-        score++;
-        if (score === 1 && start === false) { 
-            str2.push(str1[index]);
+      }
     }
-  return str2.length
-}
-}
+    return Object.keys(dict).length
+  }
 
   handleClick = () => {
     this.setState({ random: Math.floor(Math.random() * 100000) + 100000, visibility: true });
