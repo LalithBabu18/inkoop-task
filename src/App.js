@@ -14,15 +14,20 @@ export default class App extends Component {
 
   strCompare = (str1, str2) => {
     let score = 0
+    let start = false
     for (let index = 0; index < str1.length; index++) {
-      for (let jndex = 0; jndex < str2.length; jndex++) {
-        if (str1[index] === str2[jndex]) {
-          score = score + 1
+        for (let jndex = 0; jndex < str2.length; jndex++) {
+            if (str1[index] === str2[jndex]) {
+                start = true;
+            }
         }
-      }
+        score++;
+        if (score === 1 && start === false) { 
+            str2.push(str1[index]);
     }
-    return score
-  }
+  return str2.length
+}
+}
 
   handleClick = () => {
     this.setState({ random: Math.floor(Math.random() * 100000) + 100000, visibility: true });
