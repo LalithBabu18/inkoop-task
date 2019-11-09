@@ -12,16 +12,23 @@ export default class App extends Component {
     match: 0
   }
 
- strCompare = (str1, str2) => {
-    var dict = new Object();
-    for (let index = 0; index < str1.length; index++) {
-      for (let jndex = 0; jndex < str2.length; jndex++) {
-        if (str1[index] === str2[jndex]) {
-          dict[str1[index]] = 1
+  strCompare = (str1, str2) => {
+    
+    let array1 = str1.split("");
+    let array2 = str2.split("");
+    for(let i=0;i<array2.length;i++){
+        for(let j=0;j<array1.length;j++){
+            if(array2[i]===array1[j]){
+                array1.splice(array1.indexOf(array2[i]),1)
+                break;
+                
+                
+            }
         }
-      }
     }
-    return Object.keys(dict).length
+    console.log(array1);
+    
+    return 6-array1.length
   }
 
   handleClick = () => {
@@ -40,7 +47,9 @@ export default class App extends Component {
 
     if(Input!==""){
       this.setState({ guess: Input, guessVisibility: true });
-      let match = this.strCompare(Input, this.state.random.toString())
+      let match = this.strCompare(this.state.random.toString(),Input)
+      console.log(Input,this.state.random.toString(),match);
+      
       this.setState({ match })
       console.log( window.localStorage.getItem('number'));
       this.refs.input.value = "";
